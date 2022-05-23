@@ -1,0 +1,51 @@
+extends template
+block head
+    title Login
+block stilos 
+    link(rel="stylesheet", href="/css/style.css",type="text/css")
+    link(rel="stylesheet", href="/css/styleLogin.css",type="text/css")
+block header
+    header 
+        nav(class="nav-container")
+            div.nav-title-container
+                a(class="nav-title" href="#")
+                    span Ding dong
+                    img(src="assets/img/bell.svg" alt="Campana")
+block main 
+    main.main 
+        if err
+            .modal-container
+                .modal
+                    p Error usuario o contraseña incorrecta
+                .cerrar X
+                
+        
+        form(method="POST", class="form-container", action="login", id="form")
+            span(class="form-title") Iniciar
+
+            .form-group
+                input(type="text",class="input-text",placeholder=" " id="txtUsuario" name="nombre" autocomplete="off")
+                label.input-label Usuario
+                span.input-line
+            
+
+            .form-group
+                input(type="password" class="input-text input-password" placeholder=" " autocomplete="off" id="txtContraseña" name="contra")
+                label.input-label Contraseña
+                span.input-line
+                img(src="/assets/img/eye-outline.svg" alt="Imagen" class="img-ojo" id="img-ojo")
+            
+            
+            input( type="button" value="Iniciar sesion" class="btnIniciar" id="btnIniciarSesion")
+        
+    
+
+append script
+
+    script(src="/js/modales.js")  
+    script(src="/js/scriptLoging.js")  
+        
+
+                
+            
+        

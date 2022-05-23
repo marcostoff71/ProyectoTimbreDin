@@ -1,0 +1,183 @@
+
+/* -------------Notificaciones----------------------- */
+.container-notificacion{
+    text-align: start;
+    display: inline-block;
+    float: right;
+}
+.img-notificacion{
+    display: inline-block;
+    position: relative;
+    /* animation: mover 1s alternate infinite; */
+}
+@keyframes mover {
+    25%{
+        transform: rotate(35deg);
+    }
+    50%{
+        
+        transform: rotate(-45deg);
+    }
+    
+}
+.img-notificacion > img{
+    width: 40px;
+}
+.img-notificacion--active{
+    animation: mover 1s infinite alternate linear;
+}
+.img-notificacion--active::after{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+    top: -4px;
+    right: -2px;
+
+    animation:  animacion-bola .3s alternate infinite;
+}
+@keyframes animacion-bola {
+
+    to{
+        opacity: 30%;
+    }
+}
+
+/* ----------------Fin de las notificaciones-------------------------- */
+
+main{
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;   
+    text-align: center;
+}
+.container-table-responsive{
+    padding-top: 20px;
+    overflow-x: auto; 
+}
+.container-table{
+    width: fit-content;
+    margin-left:auto ; 
+    margin-right: auto;
+}
+.table-responsive{
+    overflow-x: auto;
+}
+.table{
+
+    font-family: sans-serif;
+    display: inline-block;
+    border-collapse: collapse;
+    border-radius: 8px;
+    
+}
+.table thead{
+    color: black;
+    font-weight: bold;
+    border-bottom: 3px solid black;
+}
+.table th, .table td{
+    padding: 10px;
+}
+
+
+.table td{
+    text-align: start;
+    border-bottom: 3px solid rgb(192, 192, 192);
+    
+}
+.table tr:nth-child(even){
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.table{
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+
+
+/* --Fin de tabla para mostrar datos-- */
+/*estilos de el boton de camara */
+
+.container-btn-camera{
+    display: inline-block;
+}
+
+
+
+.btn-camera{ 
+    margin-top: 20px; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: none;
+    color: white;
+    background-color: var(--bac-gris);
+    padding: 10px 20px 10px 20px;
+    border-radius: 25px;
+    transition: box-shadow .3s, background-color .3s;
+    cursor: pointer;
+}
+.btn-camera:hover{
+    box-shadow: 0px 0px 20px 2px #6e6e6e;
+}
+.btn-camera:active{
+    background-color: rgb(129, 129, 129);
+    color:black;
+}
+.btn-camera img{
+    margin-left: 3px;
+}
+
+/*s----------Fin de boton camara--------------------*/
+
+
+/* --------------------------------- */
+
+.modal-container{
+    display: none;
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(34, 32, 32, 0.89);
+    transition: all .5s;
+    backdrop-filter: blur(12px) saturate(200%);
+
+    
+}
+.modal-container--active{
+    
+    display: block;
+}
+.content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close{
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 50px;
+    cursor: pointer;
+    
+}
+
+
+/* ------------Fecha-------------- */
+
+.date{
+    text-align: center;
+    padding-top: 10px;
+    font-weight: bolder;
+    display: block;
+}

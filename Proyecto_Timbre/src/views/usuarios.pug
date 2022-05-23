@@ -1,0 +1,86 @@
+extends template
+block head
+    title Usuarios
+block stilos 
+    link(rel="stylesheet", href="/css/style.css",type="text/css")
+    link(rel="stylesheet", href="/css/styleLogin.css",type="text/css")
+    link(rel="stylesheet", href="/css/stylePrincipal.css", text="text/css")
+    link(rel="stylesheet", href="/css/styleUsuarios.css", text="text/css")
+
+block header
+    header 
+        nav.nav-container
+            .burger
+                .line.line-1
+                .line.line-2
+                .line.line-3
+            div.nav-title-container
+                a(class="nav-title" href="/principal")
+                    span Ding dong
+                    img(src="/assets/img/bell.svg" alt="Campana" id="nav-title")
+            ul.nav-list
+                li.nav-list-item: a(class="nav-list-item--link" href="/principal")
+                    span
+                        ion-icon(name="home-outline" class="icon")
+                    span Inicio
+                li.nav-list-item.nav-list-item--active: a(class="nav-list-item--link" href="/usuario")
+                    span
+                        ion-icon(name="people-outline" class="icon")
+                    span Usuarios
+                li.nav-list-item.nav-list-item-alert: a(class="nav-list-item--link nav-list-item-alert" href="/")
+                    span
+                        ion-icon(name="exit-outline" class="icon")
+                    span Salir
+block main 
+    div.container
+        if err!=NULL
+            p entre
+            .modal-container
+                .modal
+                    p Error usuario o contraseña incorrecta
+                .cerrar X
+                
+        
+        form(method="POST", class="form-container", action=usuario?`/usuario/agregar/${usuario.idUsuario}`:`/usuario/agregar`, id="form")
+            span(class="form-title")=usuario?"Modificar usuario":"Agregar usuario"
+
+            .form-group
+                input(type="text",class="input-text",placeholder=" " id="txtUsuario" name="nombre" autocomplete="off" value=usuario?usuario.usuario:"")
+                label.input-label Nombre de usuario
+                span.input-line
+            
+
+            .form-group
+                input(type="text" class="input-text" placeholder=" " autocomplete="off" id="txtContraseña" name="contra" value=usuario?usuario.contra:"")
+                label.input-label Contraseña
+                span.input-line
+                
+            
+            
+            input( type="button" value="Guardar" class="btnIniciar btnGuardar" id="btnIniciarSesion")
+        div.table-container
+            table.table 
+                thead 
+                    tr
+                        th Id
+                        th Usuario
+                        th Contraseña
+                        th Modificar
+                        th Eliminar
+                tbody 
+                    if usuarios
+                        each usu in usuarios
+                            tr
+                                td=usu.idUsuario
+                                td=usu.usuario
+                                td=usu.contra
+                                td
+                                    a(class="btn btn-modificar" href=`/usuario/${usu.idUsuario}`) Modificar  
+                                td
+                                    a(class="btn btn-eliminar" href=`/usuario/eliminar/${usu.idUsuario}`) Eliminar  
+                    
+
+append script
+    script(src="/js/scriptUsuarios.js")  
+    script(src="/js/scriptNavBar.js")
+    

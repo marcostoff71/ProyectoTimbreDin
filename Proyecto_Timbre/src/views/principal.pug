@@ -1,0 +1,100 @@
+extends template
+block head
+    title Principal
+block stilos 
+    link(rel="stylesheet", href="/css/style.css",type="text/css")
+    link(rel="stylesheet", href="/css/styleLogin.css",type="text/css")
+    link(rel="stylesheet", href="/css/stylePrincipal.css", text="text/css")
+
+block header
+    header 
+        nav.nav-container
+            .burger
+                .line.line-1
+                .line.line-2
+                .line.line-3
+            div.nav-title-container
+                a(class="nav-title" href="/principal")
+                    span Ding dong
+                    img(src="/assets/img/bell.svg" alt="Campana" id="nav-title")
+            ul.nav-list
+                li.nav-list-item.nav-list-item--active: a(class="nav-list-item--link" href="")
+                    span
+                        ion-icon(name="home-outline" class="icon")
+                    span Inicio
+                li.nav-list-item: a(class="nav-list-item--link" href="/usuario")
+                    span
+                        ion-icon(name="people-outline" class="icon")
+                    span Usuarios
+                li.nav-list-item.nav-list-item-alert: a(class="nav-list-item--link nav-list-item-alert" href="/")
+                    span
+                        ion-icon(name="exit-outline" class="icon")
+                    span Salir
+block main 
+    -
+        function regresaFecha(d){
+            return new Intl.DateTimeFormat('Es-es').format(d);
+        }
+        function regresaHora12(d= new Date()){
+            let hh=d.getHours();
+            let mm=d.getMinutes();
+            let ss=d.getSeconds();
+            let tiempo="AM";
+            if(hh>=12){
+                
+                if(hh>12){
+                    hh-=12;
+                }
+                tiempo="PM";
+            }else if(hh==0){
+                hh=12;
+            }
+
+            return `${hh<10?"0"+hh:hh}:${mm<10?"0"+mm:mm}:${ss<10?"0"+ss:ss} ${tiempo}`
+        }
+        
+
+        
+    main
+        .modal-container#modal-container
+            .close#close &times; 
+            
+            .content
+                img(src="", alt="" id="modal-img")
+        .container-table-responsive
+            .container-table
+                .container-notificacion
+                    .img-notificacion#noti
+                        img(src="./assets/img/bellN.svg" alt="")
+                table.table
+                    thead
+                        tr
+                            th Id
+                            th Fecha
+                            th Imagen
+                            //- th Estado
+                            //- th Dispositivo
+                    tbody#tbody
+                        if datos 
+                            
+                            each fila in datos 
+                                tr
+                                    td=fila.idImg 
+                                    td
+                                        time.date #{regresaHora12(fila.fecha)}
+                                        time.date #{regresaFecha(fila.fecha)}
+                                        
+                                    td
+                                        img(src=`data:image/png;base64,${fila.img}`, alt=`ImagenNUM${fila.idImg}` class="img-cam")
+                                    
+
+        .container-btn-camera
+            button(type="button" class="btn-camera" id="btnTomarFoto") Tomar foto
+                img(src="/assets/img/camera.svg" alt="" class="img-camera")
+            
+        
+
+append script
+    script(src="/js/scriptNavBar.js")
+    script(src="/js/scriptPrin.js")
+    

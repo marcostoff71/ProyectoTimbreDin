@@ -1,0 +1,299 @@
+*{
+    box-sizing: border-box;
+}
+
+body,html{
+    padding: 0;
+    margin:0;
+}
+
+:root{
+    --bac-gris:rgb(70, 65, 65);
+}
+/* Burger--------------------------------- */
+.burger{
+
+    box-sizing: border-box;
+    display: none;
+    /* padding: 5px; */
+    background-color: rgba(0, 0, 0, 0.137);
+    border-radius: 3px;
+    cursor: pointer;
+    transition:box-shadow 0.2s;
+}
+
+.burger:active{
+    background-color: rgba(238, 238, 238, 0.137);
+}
+.burger .line{
+    width:30px;
+    height: 5px;
+    margin: 5px;
+    background-color: black;
+    border-radius: 3px;
+
+    transition: transform .3s, opacity .3s;
+
+}
+
+
+.burger--active .line-1 {
+    /* transform: translateY(10px) rotate(45deg); */
+    transform: translateY(10px) rotate(-45deg);
+
+}
+.burger--active .line-2 {
+    opacity:0;
+}
+.burger--active .line-3 {
+    transform: translateY(-10px) rotate(45deg);
+    /* transform: translateY(-10px) rotate(-45deg); */
+}
+/* Burger--------------------------------- */
+
+
+/* header */
+
+.nav-title{
+    text-decoration: none;
+    color: black;
+    position: relative;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height:20px;
+    width:fit-content;
+
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing:3px;
+    
+    font-size: 1.5rem;
+    padding:3px 0px 10px 0px;
+    color: rgb(209, 209, 209);
+}
+.nav-title::after{
+    content: "";
+    position: absolute;
+    height:2px;
+    bottom: 0;
+    background-color:rgb(252, 248, 21);
+    width:70%;
+
+    transition: width .3s;
+}
+.nav-title:hover::after{
+    width:100%;
+}
+.nav-title span{
+    margin-right:4px;
+}
+.nav-title img{
+    vertical-align:middle;
+    fill: white;
+    width: 30px;
+    /* animation: animaBell 1.2s  ease-in infinite;  */
+}
+.nav-title--active{
+    
+    animation: animaBell 1.2s  linear 3; 
+}
+
+.nav-title-container{
+    display: inline-block;
+    /* margin-left: 100px; */
+}
+
+@keyframes animaBell{
+    25%{
+        transform:rotate(-45deg)
+    }
+    50%{
+        transform: rotate(45deg);
+        background-image: url(assets/img/bellRa.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 30px;
+        
+    }
+
+}
+
+
+/*header ----------------------------------------- */
+
+
+.nav-container{
+    width: auto;
+    background-color: rgb(70, 65, 65);
+
+    position:relative;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px 10%;   
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+.nav-list{
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    font-family: sans-serif;
+    font-weight: bold;
+    
+}
+.nav-list-item{
+    /* width:fit-content; */
+    border-radius: 3px;
+    background:none;
+    cursor:pointer;
+    transition: background 0.3s; 
+    
+}
+.nav-list-item:not(.nav-list-item--active):hover{
+    background-color:rgba(0, 0, 0, 0.274);
+    /* background-color:rgba(212, 44, 44, 0.274); */
+    /* box-shadow: 0px 0px 3px 3px rgba(167, 167, 167, 0.3); */
+}
+
+.nav-list-item a{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    padding:10px 10px;
+    text-decoration: none;
+    color: white;
+    transition: text-decoration .3s,border .3s;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-list-item:not(.nav-list-item--active) a:hover{
+    border-bottom: 3px solid rgb(77, 213, 231);
+    /* text-decoration: underline white; */
+    /* filter: drop-shadow(0px,0px,20px, red); */
+    /* color: rgb(184, 184, 184); */
+}
+.nav-list-item:not(.nav-list-item--active):nth-child(2n) a:hover{
+    border-bottom: 3px solid rgb(223, 209, 17);
+}
+.nav-list-item-alert:not(.nav-list-item--active)  a:hover{
+    /* background-color:rgb(145, 51, 69); */
+    border-bottom:3px solid rgb(255, 0, 76) ;
+}
+/* Iconos de list items */
+.nav-list-item a .icon{
+    vertical-align:middle;
+    margin: 0;
+    padding:0;
+    
+}
+
+.nav-list-drop{
+    position:relative;
+    z-index: 10;
+}
+.nav-list-item-drop{
+    background-color: rgb(49, 47, 47);
+    position:absolute;
+    top:100%;
+    left:0;
+    height:0;
+    overflow:hidden;
+    display:flex;
+    flex-direction: column-reverse;
+    gap: 3px;
+    transition:height .2s;
+}
+
+/* Para abrir los desplegables sin javascript
+    sirve pero no se pueden crear animaciones
+*/
+/* .nav-list-drop:hover .nav-list-item-drop{
+    height:fit-content;
+} */
+.nav-list-drop.active .row{
+    transform: rotate(90deg);
+}
+
+.row{
+    transition: transform .1s;
+}
+
+
+
+
+
+/* Texto de navbar */
+
+@media (max-width:800px) {
+    
+    .burger{
+        display: block;
+    }
+    .burger .line{
+        background-color:#fff;
+    }
+    .nav-container{
+        
+        /* background-color */
+        z-index: 10;
+        justify-content:space-between;
+    }
+    .nav-list{
+        position: absolute;
+        top: 100%;
+        left: -100vw;
+        width: 100%;
+        min-height: calc(100vh - 100%);
+        /* top: -100vh; */
+        flex-direction: column;
+        background-color: inherit;
+        align-items: center;
+        transition: top .4s, left 0.4s, height .4s;
+        overflow-y:auto;
+    }
+    
+     .nav-list.active{   
+        /* position:fixed; */
+        left:0;
+        /* top: 100%; */
+    }
+    
+    .nav-list--active{
+        left:0;
+    }
+    
+
+    .nav-list-drop{
+        overflow:hidden;
+    }
+    .nav-list-item-drop{
+        position: static;
+        background:none;
+    }
+    .nav-list-item--active .nav-list-item-drop a{
+        color: black;
+    }
+    .body--active{
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+/* Box icon css */
+
+.nav-list-item--active{
+
+    background-color: rgb(226, 223, 43);
+    border-radius: 20px;
+}
+.nav-list-item--active > a{
+    color: rgb(36, 36, 36);
+    font-weight:bold;   
+}
+
